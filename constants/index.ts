@@ -1,0 +1,3 @@
+const EXCHANGE_RATE_DOLAR = 'DOLAR';
+
+export default EXCHANGE_RATE_DOLAR;
