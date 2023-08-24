@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
+import { sendGenericSuccess, sendGenericError } from '../helpers/response';
+import getExchangeRateFromDof from '../services/http';
 import getExchangeRateFromJson from '../helpers/exchangeRate';
 import parseXml2Json from '../helpers/parsers';
-import getExchangeRateFromDof from '../services/http';
 
 export default async (req: Request, res: Response) => {
   try {
@@ -13,13 +14,13 @@ export default async (req: Request, res: Response) => {
 
     const data = getExchangeRateFromJson(dataJson);
 
-    return res.json({
+    return sendGenericSuccess(res, {
       success: true,
       data,
       message: 'Controller get tipo de cambio',
     });
   } catch (err: any) {
-    return res.status(500).json({
+    return sendGenericError(res, {
       success: false,
       message: `${err.name}: ${err.message}`,
     });
