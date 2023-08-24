@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import router from '../router';
 import { tipoCambioRouter } from '../routes';
 
@@ -20,6 +20,9 @@ class Server {
   routes() {
     this.app.use(router);
     this.app.use(this.apiPaths.tipoCambio, tipoCambioRouter.default);
+    this.app.get('/', (_req: Request, res: Response) => {
+      res.redirect(this.apiPaths.tipoCambio);
+    });
   }
 
   listen() {
