@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { sendGenericSuccess, sendGenericError } from '../helpers/response';
-import getExchangeRateFromDof from '../services/http';
+import { sendGenericError, sendGenericSuccess } from '../helpers';
 import getExchangeRateFromJson from '../helpers/exchangeRate';
 import parseXml2Json from '../helpers/parsers';
+import getExchangeRateFromDof from '../services/http';
 
 export default async (req: Request, res: Response) => {
   try {

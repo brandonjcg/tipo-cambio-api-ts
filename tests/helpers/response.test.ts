@@ -2,7 +2,7 @@ import {
   describe, expect, it,
 } from '@jest/globals';
 import { mockResponse } from 'jest-mock-req-res';
-import { TypeResponse, sendGenericError, sendGenericSuccess } from '../../helpers/response';
+import { TypeResponse, sendGenericError, sendGenericSuccess } from '../../helpers';
 
 describe('Unit test sendGenericSuccess fn', () => {
   it('Happy path, return success response', () => {
