@@ -6,7 +6,11 @@ type TypeResponse = {
   data?: object | null
 };
 
-const sendGenericSuccess = (res: Response, optionals: TypeResponse) => {
+const sendGenericSuccess = (res: Response, optionals: TypeResponse = {
+  success: true,
+  message: '',
+  data: {},
+}) => {
   const { data, message } = optionals;
 
   return res.status(200).json({
@@ -16,17 +20,18 @@ const sendGenericSuccess = (res: Response, optionals: TypeResponse) => {
   });
 };
 
-const sendGenericError = (res: Response, optionals : TypeResponse) => {
+const sendGenericError = (res: Response, optionals : TypeResponse = {
+  success: false,
+  message: '',
+  data: {},
+}) => {
   const { message, data } = optionals;
 
   return res.status(500).json({
-    success: true,
+    success: false,
     message,
     data: data ?? {},
   });
 };
 
-export {
-  sendGenericSuccess,
-  sendGenericError,
-};
+export { TypeResponse, sendGenericError, sendGenericSuccess };
