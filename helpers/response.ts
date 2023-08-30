@@ -6,16 +6,12 @@ type TypeResponse = {
   data?: object | null
 };
 
-const sendGenericSuccess = (res: Response, optionals: TypeResponse = {
-  success: true,
-  message: '',
-  data: {},
-}) => {
-  const { data, message } = optionals;
+const sendGenericSuccess = (res: Response, optionals: Partial<TypeResponse> = {}) => {
+  const { success = true, message = '', data } = optionals;
 
   return res.status(200).json({
-    success: false,
-    message: message ?? '',
+    success,
+    message,
     data: data ?? {},
   });
 };
